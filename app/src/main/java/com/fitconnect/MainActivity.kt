@@ -6,6 +6,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.fitconnect.databinding.ActivityMainBinding
 import com.fitconnect.viewmodel.MainViewModel
+import android.content.Intent
+import android.widget.Button
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,5 +34,14 @@ class MainActivity : AppCompatActivity() {
 
         // Lifecycle
         binding.lifecycleOwner = this
+
+        val btnEntrar = findViewById<Button>(R.id.btnEntrar)
+
+        btnEntrar.setOnClickListener {
+
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+
+        }
     }
 }
