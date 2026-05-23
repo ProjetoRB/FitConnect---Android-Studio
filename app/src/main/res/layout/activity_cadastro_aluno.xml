@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cadastro Aluno"
+            android:textAlignment="center"
+            android:textColor="#0F172A"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edtNomeAluno"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="28dp"
+            android:hint="Nome completo"
+            android:backgroundTint="#22C55E" />
+
+        <EditText
+            android:id="@+id/edtDataNascimentoAluno"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="12dp"
+            android:hint="DD/MM/AAAA"
+            android:inputType="date"
+            android:backgroundTint="#22C55E" />
+
+        <Spinner
+            android:id="@+id/spinnerSexoAluno"
+            android:background="@drawable/spinner_background"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="12dp" />
+
+        <EditText
+            android:id="@+id/edtEmailAluno"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="12dp"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:backgroundTint="#22C55E" />
+
+        <EditText
+            android:id="@+id/edtCpfAluno"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="12dp"
+            android:hint="CPF"
+            android:inputType="number"
+            android:backgroundTint="#22C55E" />
+
+        <EditText
+            android:id="@+id/edtPesoAluno"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="12dp"
+            android:hint="Peso (kg)"
+            android:inputType="numberDecimal"
+            android:backgroundTint="#22C55E" />
+
+        <EditText
+            android:id="@+id/edtAlturaAluno"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="12dp"
+            android:hint="Altura (m)"
+            android:inputType="numberDecimal"
+            android:backgroundTint="#22C55E" />
+
+        <EditText
+            android:id="@+id/edtSenhaAluno"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="12dp"
+            android:hint="Senha"
+            android:inputType="textPassword"
+            android:backgroundTint="#22C55E" />
+
+        <Button
+            android:id="@+id/btnCadastrarAluno"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="#22C55E"
+            android:text="Cadastrar"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</ScrollView>

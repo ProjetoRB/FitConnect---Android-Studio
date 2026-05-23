@@ -54,7 +54,7 @@
             android:layout_marginEnd="24dp"
             android:orientation="vertical"
             android:padding="24dp"
-            android:background="#1E1E1E"
+            android:background="#FFFFFF"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -63,8 +63,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Entrar"
-                android:textColor="#FFFFFF"
+                android:text="Acesse sua conta"
+                android:textColor="#22c55e"
                 android:textSize="28sp"
                 android:textStyle="bold" />
 
@@ -72,8 +72,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Faça login para continuar"
-                android:textColor="#AAAAAA"
+                android:text="Insira seus dados"
+                android:textColor="#333333"
                 android:textSize="16sp" />
 
             <!-- EMAIL -->
@@ -85,8 +85,8 @@
                 android:backgroundTint="#22C55E"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#AAAAAA" />
+                android:textColor="#111111"
+                android:textColorHint="#777777" />
 
             <!-- SENHA -->
             <EditText
@@ -97,8 +97,8 @@
                 android:backgroundTint="#22C55E"
                 android:hint="Senha"
                 android:inputType="textPassword"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#AAAAAA" />
+                android:textColor="#111111"
+                android:textColorHint="#777777" />
 
             <!-- BOTÃO LOGIN -->
             <Button
@@ -107,8 +107,17 @@
                 android:layout_height="55dp"
                 android:layout_marginTop="24dp"
                 android:backgroundTint="#22C55E"
-                android:text="Entrar"
-                android:textColor="#000000"
+                android:text="Fazer login"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+            <Button
+                android:id="@+id/btnCriarConta"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="#22C55E"
+                android:text="Criar conta"
+                android:textColor="#FFFFFF"
                 android:textStyle="bold" />
 
         </LinearLayout>
