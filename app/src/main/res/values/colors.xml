@@ -2,4 +2,16 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Cores FitConnect -->
+    <color name="verde_primario">#22C55E</color>
+    <color name="verde_escuro">#052E16</color>
+    <color name="azul_primario">#2563EB</color>
+    <color name="fundo_escuro">#0F172A</color>
+    <color name="card_escuro">#111827</color>
+    <color name="card_medio">#1E293B</color>
+    <color name="cinza_texto">#CBD5E1</color>
+    <color name="cinza_placeholder">#64748B</color>
+    <color name="vermelho">#EF4444</color>
 </resources>
+

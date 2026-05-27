@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- res/layout/item_profissional.xml -->
+<!-- Inflado via código para cada profissional retornado pela API -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_card_profissional"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_marginBottom="12dp">
+
+    <!-- Nome -->
+    <TextView
+        android:id="@+id/tvNomeProfissional"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nome do Profissional"
+        android:textColor="#F1F5F9"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="4dp"/>
+
+    <!-- Área -->
+    <TextView
+        android:id="@+id/tvAreaProfissional"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Área"
+        android:textColor="#94A3B8"
+        android:textSize="13sp"
+        android:layout_marginBottom="14dp"/>
+
+    <!-- Botões -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/btnConversar"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/bg_button_green"
+            android:text="💬 Conversar"
+            android:textColor="#052E16"
+            android:textSize="13sp"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/btnAgendar"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_button_blue"
+            android:text="📅 Agendar"
+            android:textColor="#FFFFFF"
+            android:textSize="13sp"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+</LinearLayout>

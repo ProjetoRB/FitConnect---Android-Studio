@@ -1,6 +1,280 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+        <variable
+            name="viewModel"
+            type="com.fitconnect.viewmodel.DashboardViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#0F172A"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- TOPBAR -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="16dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="FitConnect"
+                    android:textColor="#22C55E"
+                    android:textSize="26sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/tvAvatar"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:background="@drawable/bg_avatar"
+                    android:gravity="center"
+                    android:text="?"
+                    android:textColor="#052E16"
+                    android:textStyle="bold"
+                    android:textSize="16sp"/>
+
+            </LinearLayout>
+
+            <!-- BANNER -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="18dp">
+
+                <ImageView
+                    android:id="@+id/bannerImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="Banner"
+                    android:src="@drawable/banner_placeholder"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_banner_overlay"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="bottom"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_tag"
+                        android:text="FITCONNECT PREMIUM"
+                        android:textColor="#052E16"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
+                        android:layout_marginBottom="10dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Sua evolucao comeca com o profissional certo."
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nutricionistas, personal trainers e fisioterapeutas conectados em uma unica plataforma."
+                        android:textColor="#CBD5E1"
+                        android:textSize="13sp"/>
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+            <!-- CONSULTAS PENDENTES -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="18dp"
+                android:background="@drawable/bg_card"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Consultas Pendentes"
+                    android:textColor="#FFFFFF"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="14dp"/>
+
+                <LinearLayout
+                    android:id="@+id/pendingList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvSemConsultas"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nenhuma consulta pendente."
+                        android:textColor="#64748B"
+                        android:textSize="14sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="14dp"
+                    android:weightSum="2">
+
+                    <Button
+                        android:id="@+id/btnMinhasConsultas"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="6dp"
+                        android:background="@drawable/bg_button_outline"
+                        android:text="Minhas consultas"
+                        android:textColor="#CBD5E1"
+                        android:textSize="12sp"/>
+
+                    <Button
+                        android:id="@+id/btnHistorico"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="6dp"
+                        android:background="@drawable/bg_button_outline"
+                        android:text="Historico"
+                        android:textColor="#CBD5E1"
+                        android:textSize="12sp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- SECAO PROFISSIONAIS -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Qual tipo de servico voce precisa?"
+                    android:textColor="#FFFFFF"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="16dp"/>
+
+                <!-- FILTROS -->
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none"
+                    android:layout_marginBottom="16dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <Button
+                            android:id="@+id/btnFiltroTodos"
+                            android:layout_width="wrap_content"
+                            android:layout_height="38dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/bg_filter_active"
+                            android:text="Todos"
+                            android:textColor="#052E16"
+                            android:textSize="13sp"
+                            android:textStyle="bold"/>
+
+                        <Button
+                            android:id="@+id/btnFiltroNutri"
+                            android:layout_width="wrap_content"
+                            android:layout_height="38dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/bg_filter_inactive"
+                            android:text="Nutricionista"
+                            android:textColor="#CBD5E1"
+                            android:textSize="13sp"/>
+
+                        <Button
+                            android:id="@+id/btnFiltroPersonal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="38dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/bg_filter_inactive"
+                            android:text="Personal Trainer"
+                            android:textColor="#CBD5E1"
+                            android:textSize="13sp"/>
+
+                        <Button
+                            android:id="@+id/btnFiltroFisio"
+                            android:layout_width="wrap_content"
+                            android:layout_height="38dp"
+                            android:background="@drawable/bg_filter_inactive"
+                            android:text="Fisioterapeuta"
+                            android:textColor="#CBD5E1"
+                            android:textSize="13sp"/>
+
+                    </LinearLayout>
+
+                </HorizontalScrollView>
+
+                <!-- PROFISSIONAIS -->
+                <LinearLayout
+                    android:id="@+id/profissionaisContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvBuscando"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Buscando profissionais..."
+                        android:textColor="#64748B"
+                        android:textSize="14sp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="24dp"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</layout>
