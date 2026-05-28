@@ -50,6 +50,10 @@ class LoginActivity : AppCompatActivity() {
                         ).show()
 
                         if (usuario?.tipo == "Aluno") {
+                            val prefs = getSharedPreferences("fitconnect", MODE_PRIVATE)
+                            prefs.edit()
+                                .putString("usuarioNome", usuario?.nome)
+                                .apply()
                             val intent = Intent(
                                 this@LoginActivity,
                                 DashboardAlunoActivity::class.java

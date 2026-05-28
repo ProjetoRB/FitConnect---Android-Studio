@@ -9,7 +9,7 @@ object ApiClient {
 
     // TROCAR PELO IP DO SEU PC
     private const val BASE_URL =
-        "http://10.12.0.206:8080/"
+        "http://192.168.3.209:8080/"
 
     private val logging = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY

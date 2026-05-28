@@ -43,7 +43,6 @@ class DashboardActivity : AppCompatActivity() {
                 .take(2)
                 .map { it.first().uppercaseChar() }
                 .joinToString("")
-            binding.tvAvatar.text = iniciais
         }
     }
 
