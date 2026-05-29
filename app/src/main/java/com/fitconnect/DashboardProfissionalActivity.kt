@@ -35,9 +35,34 @@ class DashboardProfissionalActivity : AppCompatActivity() {
         binding = ActivityDashboardProfissionalBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.btnMinhaContaProfissional.setOnClickListener {
+            startActivity(Intent(this, MinhaContaProfissionalActivity::class.java))
+        }
+
+        binding.btnMinhaContaProfissional.setOnClickListener {
+            startActivity(
+                Intent(
+                    this,
+                    MinhaContaProfissionalActivity::class.java
+                )
+            )
+        }
+
         val prefs = getSharedPreferences("fitconnect", MODE_PRIVATE)
         val nome = prefs.getString("usuarioNome", "Profissional")
         binding.tvBoasVindasProfissional.text = "Olá, $nome"
+
+        binding.btnServicosProfissional.setOnClickListener {
+            startActivity(
+                Intent(this, ServicosActivity::class.java)
+            )
+        }
+
+        binding.btnContatoProfissional.setOnClickListener {
+            startActivity(
+                Intent(this, ContatoActivity::class.java)
+            )
+        }
 
         binding.btnRefreshProfissional.setOnClickListener {
 

@@ -83,7 +83,7 @@
 
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_height="100dp"
+                        android:layout_height="110dp"
                         android:layout_weight="1"
                         android:background="@drawable/bg_banner_overlay"
                         android:orientation="vertical"
@@ -108,7 +108,7 @@
 
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_height="100dp"
+                        android:layout_height="110dp"
                         android:layout_marginStart="12dp"
                         android:layout_weight="1"
                         android:background="@drawable/bg_banner_overlay"
@@ -200,18 +200,10 @@
                 android:layout_marginBottom="32dp"/>
 
             <Button
-                android:id="@+id/btnMeusAlunosProfissional"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:text="Meus Alunos"
-                android:textAllCaps="false"
-                android:backgroundTint="#22C55E"
-                android:textColor="#FFFFFF"/>
-
-            <Button
                 android:id="@+id/btnMinhaContaProfissional"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
+                android:layout_marginBottom="20dp"
                 android:text="Minha conta"
                 android:textAllCaps="false"
                 android:backgroundTint="#22C55E"
@@ -221,6 +213,7 @@
                 android:id="@+id/btnContatoProfissional"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
+                android:layout_marginBottom="20dp"
                 android:text="Contato"
                 android:textAllCaps="false"
                 android:backgroundTint="#22C55E"
@@ -230,6 +223,7 @@
                 android:id="@+id/btnServicosProfissional"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
+                android:layout_marginBottom="20dp"
                 android:text="Serviços"
                 android:textAllCaps="false"
                 android:backgroundTint="#22C55E"
@@ -239,6 +233,7 @@
                 android:id="@+id/btnMinhaAgendaProfissional"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
+                android:layout_marginBottom="20dp"
                 android:text="Minha Agenda"
                 android:textAllCaps="false"
                 android:backgroundTint="#22C55E"

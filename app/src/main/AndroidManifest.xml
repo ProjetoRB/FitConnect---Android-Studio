@@ -41,15 +41,29 @@
         <activity
             android:name=".LoginActivity"
             android:exported="false" />
+
         <activity
             android:name=".CadastroAlunoActivity"
             android:exported="false" />
+
         <activity
             android:name=".CadastroProfissionalActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".EditarAlunoActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".MinhaContaProfissionalActivity" />
+
+        <activity
+            android:name=".EditarProfissionalActivity" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

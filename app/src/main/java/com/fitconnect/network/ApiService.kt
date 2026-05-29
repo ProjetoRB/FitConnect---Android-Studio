@@ -1,5 +1,8 @@
 package com.fitconnect.network
 
+import com.fitconnect.model.ProfissionalRequest
+import com.fitconnect.model.Aluno
+import com.fitconnect.model.AlunoRequest
 import com.fitconnect.model.AgendamentoRequest
 import com.fitconnect.model.Consulta
 import com.fitconnect.model.Horario
@@ -63,4 +66,30 @@ interface ApiService {
     fun cancelarConsulta(
         @Body request: AtualizarStatusAgendaRequest
     ): Call<Unit>
+
+    // ─────────────────────────────────────────
+// ALUNOS
+// ─────────────────────────────────────────
+    @GET("alunos/{id}")
+    fun getAlunoPorId(
+        @Path("id") alunoId: Long
+    ): Call<Aluno>
+
+    @PUT("alunos/{id}")
+    fun atualizarAluno(
+        @Path("id") alunoId: Long,
+        @Body request: AlunoRequest
+    ): Call<Aluno>
+
+    @GET("profissionais/{id}")
+    fun getProfissionalPorId(
+        @Path("id") id: Long
+    ): Call<Profissional>
+
+    @PUT("profissionais/{id}")
+    fun atualizarProfissional(
+        @Path("id") id: Long,
+        @Body profissional: ProfissionalRequest
+    ): Call<Profissional>
+
 }
