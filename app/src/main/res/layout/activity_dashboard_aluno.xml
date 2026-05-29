@@ -41,6 +41,15 @@
                         android:backgroundTint="#1E293B"
                         android:padding="10dp" />
 
+                    <ImageButton
+                        android:id="@+id/btnRefreshAluno"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="8dp"
+                        android:backgroundTint="#1E293B"
+                        android:padding="10dp"
+                        android:src="@android:drawable/ic_popup_sync" />
+
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -92,6 +101,16 @@
                 </FrameLayout>
 
                 <!-- CONSULTAS PENDENTES -->
+                <Button
+                    android:id="@+id/btnOcultarConsultasAluno"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="14dp"
+                    android:backgroundTint="#22C55E"
+                    android:text="Ocultar consultas"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

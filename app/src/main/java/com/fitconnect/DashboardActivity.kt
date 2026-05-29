@@ -117,11 +117,13 @@ class DashboardActivity : AppCompatActivity() {
                 .inflate(R.layout.item_consulta, container, false)
 
             itemView.findViewById<TextView>(R.id.tvDataConsulta).text =
-                formatarData(consulta.dataDisponivel)
+                formatarData(consulta.dataDisponivel ?: "")
+
             itemView.findViewById<TextView>(R.id.tvHoraConsulta).text =
-                consulta.horaDisponivel.substring(0, 5)
+                consulta.horaDisponivel?.substring(0, 5) ?: "--"
+
             itemView.findViewById<TextView>(R.id.tvStatusConsulta).text =
-                consulta.statusHorario
+                consulta.statusHorario ?: "--"
 
             itemView.findViewById<Button>(R.id.btnCancelarConsulta).setOnClickListener {
                 viewModel.cancelarConsulta(consulta.id)

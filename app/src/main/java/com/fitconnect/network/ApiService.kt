@@ -54,6 +54,11 @@ interface ApiService {
         @Path("id") alunoId: Long
     ): Call<List<Consulta>>
 
+    @GET("agenda-profissional/profissional/{id}/todos")
+    fun getConsultasProfissional(
+        @Path("id") profissionalId: Long
+    ): Call<List<Consulta>>
+
     @PUT("agenda-profissional/status")
     fun cancelarConsulta(
         @Body request: AtualizarStatusAgendaRequest

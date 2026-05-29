@@ -3,10 +3,12 @@ package com.fitconnect
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import com.fitconnect.databinding.ActivityDashboardAlunoBinding
@@ -35,6 +37,18 @@ class DashboardAlunoActivity : AppCompatActivity() {
         binding = ActivityDashboardAlunoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.btnRefreshAluno.setOnClickListener {
+
+            buscarProfissionais()
+            buscarConsultasPendentes()
+
+            Toast.makeText(
+                this,
+                "Atualizado com sucesso!",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+
         binding.btnMenu.setOnClickListener {
             binding.drawerLayout.openDrawer(GravityCompat.START)
         }
@@ -52,8 +66,11 @@ class DashboardAlunoActivity : AppCompatActivity() {
         }
 
         binding.btnSairAluno.setOnClickListener {
-            startActivity(Intent(this, LoginActivity::class.java))
-            finish()
+            confirmarSaida()
+        }
+
+        binding.btnOcultarConsultasAluno.setOnClickListener {
+            alternarConsultas()
         }
 
         binding.btnFiltroTodos.setOnClickListener {
@@ -79,6 +96,28 @@ class DashboardAlunoActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         buscarConsultasPendentes()
+    }
+
+    private fun confirmarSaida() {
+        AlertDialog.Builder(this)
+            .setTitle("Sair")
+            .setMessage("Deseja sair da sua conta?")
+            .setPositiveButton("Sim") { _, _ ->
+                startActivity(Intent(this, LoginActivity::class.java))
+                finish()
+            }
+            .setNegativeButton("Cancelar", null)
+            .show()
+    }
+
+    private fun alternarConsultas() {
+        if (binding.pendingList.visibility == View.VISIBLE) {
+            binding.pendingList.visibility = View.GONE
+            binding.btnOcultarConsultasAluno.text = "Mostrar consultas"
+        } else {
+            binding.pendingList.visibility = View.VISIBLE
+            binding.btnOcultarConsultasAluno.text = "Ocultar consultas"
+        }
     }
 
     private fun buscarProfissionais() {
@@ -149,8 +188,8 @@ class DashboardAlunoActivity : AppCompatActivity() {
             val texto = TextView(this)
             texto.text = """
                 Consulta agendada
-                Data: ${consulta.dataDisponivel}
-                Hora: ${consulta.horaDisponivel}
+                Data: ${consulta.dataDisponivel ?: "--"}
+                Hora: ${consulta.horaDisponivel ?: "--"}
             """.trimIndent()
             texto.setTextColor(Color.WHITE)
             texto.textSize = 16f
@@ -161,7 +200,14 @@ class DashboardAlunoActivity : AppCompatActivity() {
             btnCancelar.setBackgroundColor(Color.parseColor("#EF4444"))
 
             btnCancelar.setOnClickListener {
-                cancelarConsulta(consulta.id)
+                AlertDialog.Builder(this)
+                    .setTitle("Cancelar consulta")
+                    .setMessage("Deseja cancelar esta consulta?")
+                    .setPositiveButton("Sim") { _, _ ->
+                        cancelarConsulta(consulta.id)
+                    }
+                    .setNegativeButton("Cancelar", null)
+                    .show()
             }
 
             card.addView(texto)
