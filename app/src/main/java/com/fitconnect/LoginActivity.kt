@@ -30,18 +30,22 @@ class LoginActivity : AppCompatActivity() {
             val email = edtEmail.text.toString()
             val senha = edtSenha.text.toString()
 
-            val request = LoginRequest(email, senha)
-
             val api = ApiClient.retrofit.create(ApiService::class.java)
 
-            api.login(request).enqueue(object : Callback<LoginResponse> {
-
+            api.login(LoginRequest(email, senha)).enqueue(object : Callback<LoginResponse> {
                 override fun onResponse(
                     call: Call<LoginResponse>,
                     response: Response<LoginResponse>
                 ) {
                     if (response.isSuccessful) {
                         val usuario = response.body()
+
+                        getSharedPreferences("fitconnect", MODE_PRIVATE)
+                            .edit()
+                            .putLong("usuarioId", usuario?.id ?: 0L)
+                            .putString("usuarioNome", usuario?.nome)
+                            .putString("usuarioTipo", usuario?.tipo)
+                            .apply()
 
                         Toast.makeText(
                             this@LoginActivity,
@@ -50,23 +54,12 @@ class LoginActivity : AppCompatActivity() {
                         ).show()
 
                         if (usuario?.tipo == "Aluno") {
-                            val prefs = getSharedPreferences("fitconnect", MODE_PRIVATE)
-                            prefs.edit()
-                                .putString("usuarioNome", usuario?.nome)
-                                .apply()
-                            val intent = Intent(
-                                this@LoginActivity,
-                                DashboardAlunoActivity::class.java
-                            )
-                            startActivity(intent)
+                            startActivity(Intent(this@LoginActivity, DashboardAlunoActivity::class.java))
                         } else {
-                            val intent = Intent(
-                                this@LoginActivity,
-                                DashboardProfissionalActivity::class.java
-                            )
-                            startActivity(intent)
+                            startActivity(Intent(this@LoginActivity, DashboardProfissionalActivity::class.java))
                         }
 
+                        finish()
                     } else {
                         Toast.makeText(
                             this@LoginActivity,
@@ -76,10 +69,7 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
 
-                override fun onFailure(
-                    call: Call<LoginResponse>,
-                    t: Throwable
-                ) {
+                override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                     Toast.makeText(
                         this@LoginActivity,
                         "Erro: ${t.message}",
@@ -96,13 +86,9 @@ class LoginActivity : AppCompatActivity() {
                 .setTitle("Escolha o tipo de conta")
                 .setItems(opcoes) { _, which ->
                     if (which == 0) {
-                        startActivity(
-                            Intent(this, CadastroAlunoActivity::class.java)
-                        )
+                        startActivity(Intent(this, CadastroAlunoActivity::class.java))
                     } else {
-                        startActivity(
-                            Intent(this, CadastroProfissionalActivity::class.java)
-                        )
+                        startActivity(Intent(this, CadastroProfissionalActivity::class.java))
                     }
                 }
                 .show()

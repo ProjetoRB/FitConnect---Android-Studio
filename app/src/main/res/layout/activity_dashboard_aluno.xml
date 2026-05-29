@@ -243,6 +243,7 @@
                 android:layout_marginBottom="32dp"/>
 
             <Button
+                android:id="@+id/btnMinhaConta"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:text="Minha conta"
@@ -251,6 +252,7 @@
                 android:textColor="#CBD5E1"/>
 
             <Button
+                android:id="@+id/btnContato"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:text="Contato"
@@ -259,6 +261,7 @@
                 android:textColor="#CBD5E1"/>
 
             <Button
+                android:id="@+id/btnServicos"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:text="Serviços"

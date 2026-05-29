@@ -15,6 +15,22 @@
 
 
         <activity
+            android:name=".MinhaContaAlunoActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ContatoActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ServicosActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".AgendamentoActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".DashboardAlunoActivity"
             android:exported="false" />
 

@@ -1,9 +1,12 @@
 package com.fitconnect.network
 
+import com.fitconnect.model.AgendamentoRequest
 import com.fitconnect.model.Consulta
+import com.fitconnect.model.Horario
 import com.fitconnect.model.LoginRequest
 import com.fitconnect.model.LoginResponse
 import com.fitconnect.model.Profissional
+import com.fitconnect.model.AtualizarStatusAgendaRequest
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -28,6 +31,22 @@ interface ApiService {
     fun getProfissionais(): Call<List<Profissional>>
 
     // ─────────────────────────────────────────
+    // HORÁRIOS
+    // ─────────────────────────────────────────
+    @GET("agenda-profissional/profissional/{id}")
+    fun getHorariosProfissional(
+        @Path("id") profissionalId: Long
+    ): Call<List<Horario>>
+
+    // ─────────────────────────────────────────
+    // AGENDAMENTO
+    // ─────────────────────────────────────────
+    @PUT("agenda-profissional/agendar")
+    fun agendarHorario(
+        @Body request: AgendamentoRequest
+    ): Call<Any>
+
+    // ─────────────────────────────────────────
     // CONSULTAS
     // ─────────────────────────────────────────
     @GET("agenda-profissional/aluno/{id}")
@@ -37,6 +56,6 @@ interface ApiService {
 
     @PUT("agenda-profissional/status")
     fun cancelarConsulta(
-        @Body body: Map<String, Any>
+        @Body request: AtualizarStatusAgendaRequest
     ): Call<Unit>
 }

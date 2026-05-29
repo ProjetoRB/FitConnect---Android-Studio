@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.fitconnect.model.AtualizarStatusAgendaRequest
 import com.fitconnect.model.Consulta
 import com.fitconnect.model.Profissional
 import com.fitconnect.network.ApiClient
@@ -26,17 +27,14 @@ class DashboardViewModel(application: Application) : AndroidViewModel(applicatio
 
     private val api = ApiClient.retrofit.create(ApiService::class.java)
 
-    // Pega o id do aluno logado via SharedPreferences
     private val alunoId: Long
         get() {
             val prefs = getApplication<Application>()
                 .getSharedPreferences("fitconnect", android.content.Context.MODE_PRIVATE)
-            return prefs.getLong("usuarioId", 1L)
+
+            return prefs.getLong("usuarioId", 0L)
         }
 
-    // ─────────────────────────────────────────
-    // CARREGAR PROFISSIONAIS
-    // ─────────────────────────────────────────
     fun carregarProfissionais(filtro: String = "todos") {
         _dashboardState.value = DashboardState.Loading
 
@@ -47,26 +45,35 @@ class DashboardViewModel(application: Application) : AndroidViewModel(applicatio
             ) {
                 if (response.isSuccessful) {
                     val lista = response.body() ?: emptyList()
-                    val filtrado = if (filtro == "todos") {
-                        lista
-                    } else {
-                        lista.filter { it.areaProfissional == filtro }
-                    }
-                    _dashboardState.value = DashboardState.ProfissionaisCarregados(filtrado)
+
+                    val filtrado =
+                        if (filtro == "todos") {
+                            lista
+                        } else {
+                            lista.filter {
+                                it.areaProfissional?.equals(filtro, ignoreCase = true) == true
+                            }
+                        }
+
+                    _dashboardState.value =
+                        DashboardState.ProfissionaisCarregados(filtrado)
+
                 } else {
-                    _dashboardState.value = DashboardState.Erro("Erro ao carregar profissionais.")
+                    _dashboardState.value =
+                        DashboardState.Erro("Erro ao carregar profissionais.")
                 }
             }
 
-            override fun onFailure(call: Call<List<Profissional>>, t: Throwable) {
-                _dashboardState.value = DashboardState.Erro("Erro de conexão: ${t.message}")
+            override fun onFailure(
+                call: Call<List<Profissional>>,
+                t: Throwable
+            ) {
+                _dashboardState.value =
+                    DashboardState.Erro("Erro de conexão: ${t.message}")
             }
         })
     }
 
-    // ─────────────────────────────────────────
-    // CARREGAR CONSULTAS PENDENTES
-    // ─────────────────────────────────────────
     fun carregarConsultasPendentes() {
         api.getConsultasAluno(alunoId).enqueue(object : Callback<List<Consulta>> {
             override fun onResponse(
@@ -75,39 +82,55 @@ class DashboardViewModel(application: Application) : AndroidViewModel(applicatio
             ) {
                 if (response.isSuccessful) {
                     val ativas = (response.body() ?: emptyList())
-                        .filter { it.statusHorario == "agendado" }
-                    _dashboardState.value = DashboardState.ConsultasCarregadas(ativas)
+                        .filter {
+                            it.statusHorario.equals("agendado", ignoreCase = true)
+                        }
+
+                    _dashboardState.value =
+                        DashboardState.ConsultasCarregadas(ativas)
+
                 } else {
-                    _dashboardState.value = DashboardState.Erro("Erro ao carregar consultas.")
+                    _dashboardState.value =
+                        DashboardState.Erro("Erro ao carregar consultas.")
                 }
             }
 
-            override fun onFailure(call: Call<List<Consulta>>, t: Throwable) {
-                _dashboardState.value = DashboardState.Erro("Erro de conexão: ${t.message}")
+            override fun onFailure(
+                call: Call<List<Consulta>>,
+                t: Throwable
+            ) {
+                _dashboardState.value =
+                    DashboardState.Erro("Erro de conexão: ${t.message}")
             }
         })
     }
 
-    // ─────────────────────────────────────────
-    // CANCELAR CONSULTA
-    // ─────────────────────────────────────────
     fun cancelarConsulta(horarioId: Long) {
-        val body = mapOf<String, Any>(
-            "horarioId" to horarioId,
-            "status" to "cancelado_aluno"
+        val request = AtualizarStatusAgendaRequest(
+            horarioId = horarioId,
+            alunoId = alunoId,
+            status = "cancelado_aluno"
         )
 
-        api.cancelarConsulta(body).enqueue(object : Callback<Unit> {
-            override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
+        api.cancelarConsulta(request).enqueue(object : Callback<Unit> {
+            override fun onResponse(
+                call: Call<Unit>,
+                response: Response<Unit>
+            ) {
                 if (response.isSuccessful) {
                     carregarConsultasPendentes()
                 } else {
-                    _dashboardState.value = DashboardState.Erro("Erro ao cancelar consulta.")
+                    _dashboardState.value =
+                        DashboardState.Erro("Erro ao cancelar consulta.")
                 }
             }
 
-            override fun onFailure(call: Call<Unit>, t: Throwable) {
-                _dashboardState.value = DashboardState.Erro("Erro de conexão: ${t.message}")
+            override fun onFailure(
+                call: Call<Unit>,
+                t: Throwable
+            ) {
+                _dashboardState.value =
+                    DashboardState.Erro("Erro de conexão: ${t.message}")
             }
         })
     }

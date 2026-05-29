@@ -35,17 +35,8 @@ class DashboardActivity : AppCompatActivity() {
     }
 
     private fun configurarAvatar() {
-        val prefs = getSharedPreferences("fitconnect", MODE_PRIVATE)
-        val nome = prefs.getString("usuarioNome", "") ?: ""
-
-        if (nome.isNotBlank()) {
-            val iniciais = nome.trim().split(" ")
-                .take(2)
-                .map { it.first().uppercaseChar() }
-                .joinToString("")
-        }
+        // Avatar removido do layout
     }
-
     private fun configurarFiltros() {
         val botoes = mapOf(
             binding.btnFiltroTodos    to "todos",
@@ -103,6 +94,7 @@ class DashboardActivity : AppCompatActivity() {
 
             // Navegar para AgendamentoActivity
             itemView.findViewById<Button>(R.id.btnAgendar).setOnClickListener {
+                val intent = Intent(this, AgendamentoActivity::class.java)
                 intent.putExtra("profId", prof.id)
                 intent.putExtra("profNome", prof.nomeCompleto)
                 intent.putExtra("profArea", prof.areaProfissional)
